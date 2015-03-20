@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var prep = require('../src/prep');
+var build = require('../src/build');
+var slice = require('../src/slice');
+var create = require('../src/create');
+
+program
+  .command('prep <inputPBF> <outputPBF>')
+  .description('extract all administrative boundaries into a new pbf file')
+  .option('-t, --tempDir <tempDir>', 'specify temp directory, defaults to /tmp/fences/', '/tmp/fences/')
+  .action(prep)
+  .on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ fences prep /etc/data/planet-latest.pbf /etc/data/planet-filtered.pbf');
+    console.log('    $ fences prep -t /tmp/otherDir /etc/data/planet-latest.pbf /etc/data/planet-filtered.pbf');
+    console.log();
+  });
+
+program
+  .command('build <inputFile> <outputDir>')
+  .description('process an OSM file and generate geojson files for each admin_level of administrative boundaries')
+  .action(build)
+  .on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ fences build /etc/data/planet-filtered.pbf /etc/data/planet-fences/');
+    console.log();
+  });
+
+program
+  .command('slice  <regionsFile> <inputDir> <outputDir>')
+  .description('slice all geojson files in inputDir into specified regions')
+  .action(slice)
+  .on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ fences slice /etc/data/regions.json /etc/data/planet-fences/ /etc/data/region-fences/');
+    console.log();
+  });
+
+program
+  .command('create <inputPBF> <regionsFile> <outputDir>')
+  .description('run fences creation process from start to finish (prep,build,slice)')
+  .option('-t, --tempDir <tempDir>', 'specify temp directory, defaults to /tmp/fences/', '/tmp/fences/')
+  .action(create)
+  .on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ fences create /etc/data/planet-latest.pbf /etc/data/regions.json /etc/data/region-fences/');
+    console.log();
+  });
+
+
+program.parse(process.argv);
+
+if (!program.args.length) program.help();
