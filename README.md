@@ -1,7 +1,6 @@
 # fences
-[![Build Status](https://travis-ci.org/pelias/fences.svg?branch=master)](https://travis-ci.org/pelias/fences)
 
-[![NPM](https://nodei.co/npm/pelias-fences.png)](https://nodei.co/npm/pelias-fences/)
+[![NPM](https://nodei.co/npm/pelias-fences.png)](https://nodei.co/npm/fences/)
 
 Builds administrative boundary datasets
 
