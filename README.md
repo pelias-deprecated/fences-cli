@@ -1,6 +1,6 @@
 # fences
 
-[![NPM](https://nodei.co/npm/pelias-fences.png)](https://nodei.co/npm/fences/)
+[![NPM](https://nodei.co/npm/fences.png)](https://nodei.co/npm/fences/)
 
 Builds administrative boundary datasets
 
