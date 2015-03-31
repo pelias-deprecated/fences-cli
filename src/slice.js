@@ -1,3 +1,6 @@
+// this function has too many parameters, but the are coming from commander and cannot be refactored
+/* jshint ignore:start */
+
 var util = require('util');
 var fs = require('fs');
 var fs_extra = require('fs-extra');
@@ -10,9 +13,10 @@ var exec = require('child_process').exec;
  * @param {string} regionFile
  * @param {string} inputDir
  * @param {string} outputDir
+ * @param {object} [options] commander will pass this argument, not used
  * @param {function} [callback] optional
  */
-module.exports = function slice(regionFile, inputDir, outputDir, callback) {
+module.exports = function slice(regionFile, inputDir, outputDir, options, callback) {
   if (!fs.existsSync(regionFile) || !fs.existsSync(inputDir)) {
     console.error(colors.red('[Error]:'), 'Region file or inputDir do not exist');
     process.exit(1);
@@ -35,7 +39,7 @@ module.exports = function slice(regionFile, inputDir, outputDir, callback) {
       console.error(colors.red('[exec error]'), error);
     }
 
-    if (callback) {
+    if (callback && typeof callback === 'function') {
       callback();
     }
     else {
@@ -43,3 +47,4 @@ module.exports = function slice(regionFile, inputDir, outputDir, callback) {
     }
   });
 };
+/* jshint ignore:end */

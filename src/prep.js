@@ -27,7 +27,7 @@ module.exports = function prep(pbfFile, outputFile, options, callback) {
       convert.bind(null, filteredOsmFile, outputFile)
     ],
     function () {
-      if (callback) {
+      if (callback && typeof callback === 'function') {
         callback();
       }
       else {

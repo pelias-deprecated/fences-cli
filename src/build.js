@@ -8,9 +8,10 @@ var exec = require('child_process').exec;
  *
  * @param {string} inputFile
  * @param {string} outputDir
+ * @param {object} [options] commander will pass this argument, not used
  * @param {function} [callback] optional
  */
-module.exports = function build(inputFile, outputDir, callback) {
+module.exports = function build(inputFile, outputDir, options, callback) {
   fs.ensureDir(outputDir);
 
   var cmd = util.format('./node_modules/.bin/fences-builder --inputFile=%s --outputDir=%s', inputFile, outputDir);
@@ -26,7 +27,7 @@ module.exports = function build(inputFile, outputDir, callback) {
       console.error(colors.red('[exec error]'), error);
     }
 
-    if (callback) {
+    if (callback && typeof callback === 'function') {
       callback();
     }
     else {
