@@ -12,7 +12,7 @@
     "fences": "./bin/fences"
   },
   "scripts": {
-    "postinstall": "sh ./postinstall.sh"
+    "preinstall": "./scripts/preinstall.sh"
   },
   "devDependencies": {
     "precommit-hook": "*"

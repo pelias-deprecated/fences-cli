@@ -7,12 +7,18 @@ var colors = require('colors');
 
 module.exports = function create(inputFile, regions, outputDir, options) {
   var prepResultFile = path.join(options.tempDir, 'prep_result.pbf');
+
   async.series([
     prep.bind(null, inputFile, prepResultFile, options),
-    build.bind(null, prepResultFile, outputDir),
-    slice.bind(null, regions, outputDir, outputDir)
+    build.bind(null, prepResultFile, outputDir, options),
+    slice.bind(null, regions, outputDir, outputDir, options)
   ],
-  function () {
+  function (code) {
+    if (code) {
+      console.error(colors.red('Error occurred'));
+      process.exit(code);
+      return;
+    }
     console.log(colors.green('All done!'));
   });
 };

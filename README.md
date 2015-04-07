@@ -4,6 +4,20 @@
 
 Builds administrative boundary datasets
 
+## requirements
+
+####[`osmfilter`](http://wiki.openstreetmap.org/wiki/Osmfilter)
+
+```bash
+$ wget -O - http://m.m.i24.cc/osmfilter.c |cc -x c - -O3 -o /usr/local/bin/osmfilter
+```
+
+####[`osmconvert`](http://wiki.openstreetmap.org/wiki/Osmconvert)
+
+```bash
+$ wget -O - http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o /usr/local/bin/osmconvert
+```
+
 ## install
 
 ```bash
