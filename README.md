@@ -6,15 +6,20 @@ Builds administrative boundary datasets
 
 ## requirements
 
-####[`osmfilter`](http://wiki.openstreetmap.org/wiki/Osmfilter)
+#### `osmfilter` `osmconvert`
 
+[`osmfilter`](http://wiki.openstreetmap.org/wiki/Osmfilter)
+[`osmconvert`](http://wiki.openstreetmap.org/wiki/Osmconvert)
+
+Ubuntu provides `osmfilter` and `osmconvert` in a package called `osmctools` which can be installed with
+ 
 ```bash
-$ wget -O - http://m.m.i24.cc/osmfilter.c |cc -x c - -O3 -o /usr/local/bin/osmfilter
+$ [sudo] apt-get install osmctools
 ```
-
-####[`osmconvert`](http://wiki.openstreetmap.org/wiki/Osmconvert)
+Or you can build them as follows
 
 ```bash
+$ wget -O - http://m.m.i24.cc/osmfilter.c | cc -x c - -O3 -o /usr/local/bin/osmfilter
 $ wget -O - http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o /usr/local/bin/osmconvert
 ```
 

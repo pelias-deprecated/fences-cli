@@ -16,6 +16,11 @@ var spawn = require('./spawner');
  * @param {function} [callback] optional
  */
 module.exports = function prep(pbfFile, outputFile, options, callback) {
+  if (!options) {
+    options = {};
+  }
+  options.tempDir = options.tempDir || '/tmp';
+
   fs.ensureDirSync(options.tempDir);
 
   var o5mFile = path.join(options.tempDir, 'original.o5m');
