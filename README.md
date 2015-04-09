@@ -132,3 +132,9 @@ create [options] <inputPBF> <regionsFile> <outputDir>
 
     $ fences create /etc/data/planet-latest.pbf /etc/data/regions.json /etc/data/region-fences/
 ```
+
+## test
+
+`npm test`
+
+[![Build Status](https://travis-ci.org/pelias/fences-cli.png?branch=master)](https://travis-ci.org/pelias/fences-cli)
