@@ -28,7 +28,7 @@ module.exports = function prep(pbfFile, outputFile, options, callback) {
 
   async.series([
       convert.bind(null, pbfFile, o5mFile),
-      filterAdminBoundaries.bind(null, o5mFile, filteredOsmFile),
+      filterAdminBoundaries.bind(null, options.tempDir, o5mFile, filteredOsmFile),
       convert.bind(null, filteredOsmFile, outputFile)
     ],
     function (code) {
@@ -51,6 +51,10 @@ function convert(inputFile, outputFile, callback) {
   spawn('osmconvert', [ inputFile, '-o=' + outputFile ], callback);
 }
 
-function filterAdminBoundaries(o5mFile, outputFile, callback) {
-  spawn( 'osmfilter', [ o5mFile, '--keep=boundary=administrative', '-o=' + outputFile ], callback );
+function filterAdminBoundaries(tempDir, o5mFile, outputFile, callback) {
+  spawn(
+    'osmfilter',
+    [ o5mFile, '--keep=boundary=administrative', '-o=' + outputFile, '-t=' + tempDir + '/' ],
+    callback
+  );
 }
