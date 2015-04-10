@@ -1,6 +1,3 @@
-// this function has too many parameters, but the are coming from commander and cannot be refactored
-/* jshint ignore:start */
-
 var util = require('util');
 var fs = require('fs-extra');
 var colors = require('colors');
@@ -14,8 +11,10 @@ var spawn = require('./spawner');
  * @param {string} outputDir
  * @param {object} [options] commander will pass this argument, not used
  * @param {function} [callback] optional
+ *
+ * Note:this function has too many parameters, but they are coming from commander and cannot be refactored
  */
-module.exports = function slice(regionFile, inputDir, outputDir, options, callback) {
+module.exports = function slice(regionFile, inputDir, outputDir, options, callback) { // jshint ignore:line
 
   if (!fs.existsSync(regionFile) || !fs.existsSync(inputDir)) {
     console.error(colors.red('[Error]:'), 'Region file or inputDir do not exist');
@@ -30,4 +29,3 @@ module.exports = function slice(regionFile, inputDir, outputDir, options, callba
 
   spawn(cmd, args, callback);
 };
-/* jshint ignore:end */

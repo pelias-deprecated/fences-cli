@@ -1,4 +1,3 @@
-/* jshint ignore:start */
 var proxyquire = require('proxyquire');
 
 module.exports.tests = {};
@@ -37,7 +36,7 @@ module.exports.tests.interface = function(test/*, common*/) {
       callback();
     };
 
-    var sliceMock = function (regions, inputDir, outputDir, options, callback) {
+    var sliceMock = function (regions, inputDir, outputDir, options, callback) { // jshint ignore:line
       t.equal(regions, createRegions, 'slice called with regions file');
       t.equal(inputDir, createOutputDir, 'slice called with input dir');
       t.equal(outputDir, createOutputDir, 'slice called with output dir');
