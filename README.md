@@ -4,6 +4,23 @@
 
 Builds administrative boundary datasets
 
+## requirements
+
+#### [`osmfilter`](http://wiki.openstreetmap.org/wiki/Osmfilter)
+#### [`osmconvert`](http://wiki.openstreetmap.org/wiki/Osmconvert)
+
+Ubuntu provides `osmfilter` and `osmconvert` in a package called `osmctools` which can be installed with
+ 
+```bash
+$ [sudo] apt-get install osmctools
+```
+Or you can build them as follows
+
+```bash
+$ wget -O - http://m.m.i24.cc/osmfilter.c | cc -x c - -O3 -o /usr/local/bin/osmfilter
+$ wget -O - http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o /usr/local/bin/osmconvert
+```
+
 ## install
 
 ```bash
@@ -27,7 +44,7 @@ Options:
     -h, --help  output usage information
 ```
 
-### `prep`
+#### `prep`
 
 Typically you would run prep on `planet-latest.pbf` before feeding it to the `build` script.
 `prep` will intelligently filter the input file and preserve only administrative boundary relations and all their belonging members.
@@ -49,7 +66,7 @@ prep [options] <inputPBF> <outputPBF>
     $ fences prep -t /tmp/otherDir /etc/data/planet-latest.pbf /etc/data/planet-filtered.pbf
 ```
 
-### `build`
+#### `build`
 
 ```
 build [options] <inputFile> <outputDir>
@@ -65,7 +82,7 @@ build [options] <inputFile> <outputDir>
     $ fences build /etc/data/planet-filtered.pbf /etc/data/planet-fences/
 ```
 
-### `slice`
+#### `slice`
 
 This script will generate region extracts from a given directory of geojson files.
 Regions file should look something like this.
@@ -95,7 +112,7 @@ slice [options] <regionsFile> <inputDir> <outputDir>
     $ fences slice /etc/data/regions.json /etc/data/planet-fences/ /etc/data/region-fences/
 ```
 
-### create
+#### `create`
 
 This script will run all the other steps in the correct order: prep -> build -> slice and produce region extracts of `fences`
 
@@ -113,3 +130,9 @@ create [options] <inputPBF> <regionsFile> <outputDir>
 
     $ fences create /etc/data/planet-latest.pbf /etc/data/regions.json /etc/data/region-fences/
 ```
+
+## test
+
+`npm test`
+
+[![Build Status](https://travis-ci.org/pelias/fences-cli.png?branch=master)](https://travis-ci.org/pelias/fences-cli)

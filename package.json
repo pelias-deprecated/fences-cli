@@ -11,11 +11,18 @@
   "bin": {
     "fences": "./bin/fences"
   },
+  "engines": {
+    "node": ">=0.10.3 <0.11"
+  },
   "scripts": {
-    "postinstall": "sh ./postinstall.sh"
+    "preinstall": "./scripts/preinstall.sh",
+    "test": "node test/run.js | tap-spec"
   },
   "devDependencies": {
-    "precommit-hook": "*"
+    "precommit-hook": "*",
+    "proxyquire": "^1.4.0",
+    "tap-spec": "^3.0.0",
+    "tape": "^4.0.0"
   },
   "repository": {
     "type": "git",
