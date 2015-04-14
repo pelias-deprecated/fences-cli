@@ -92,7 +92,12 @@ Regions file should look something like this.
   "regions": [
     {
      "name": "USA",
-      "box": [-66.885444, 49.384358, -124.848974, 24.396308]
+      "box": {
+        "left": -124.848974,
+        "bottom": 24.396308
+        "right": -66.885444,
+        "top": 49.384358
+      }
     }
   ]
 }

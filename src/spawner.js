@@ -22,11 +22,11 @@ module.exports = function spawnChild(command, args, callback, stdio) {
   proc.on('close', function (code) {
     if (code !== 0) {
       if (callback && typeof callback === 'function') {
-        callback(code);
+        callback(code || 100); // code could be null, which indicates error
       }
       else {
         console.error('Child process exited with error code ', code);
-        process.exit(code);
+        process.exit(code || 100); // code could be null, which indicates error
       }
     }
     else {
