@@ -31,7 +31,7 @@ module.exports.tests.interface = function(test/*, common*/) {
     var buildMock = function (pbfFile, outputDir, options, callback) {
       t.equal(pbfFile, tempDir + prepResult, 'build called with input file');
       t.equal(outputDir, createOutputDir, 'build called with output dir');
-      t.equal(options.tempDir, tempDir, 'prep called with tempDir');
+      t.equal(options.tempDir, tempDir, 'build called with tempDir');
       checks.buildCalled = true;
       callback();
     };
@@ -40,7 +40,7 @@ module.exports.tests.interface = function(test/*, common*/) {
       t.equal(regions, createRegions, 'slice called with regions file');
       t.equal(inputDir, createOutputDir, 'slice called with input dir');
       t.equal(outputDir, createOutputDir, 'slice called with output dir');
-      t.equal(options.tempDir, tempDir, 'prep called with tempDir');
+      t.equal(options.tempDir, tempDir, 'slice called with tempDir');
       checks.sliceCalled = true;
       callback();
     };
