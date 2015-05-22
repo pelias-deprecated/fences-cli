@@ -25,7 +25,7 @@ module.exports = function slice(regionFile, inputDir, outputDir, options, callba
   fs.ensureDirSync(outputDir);
 
   var cmd = util.format('%s/../node_modules/.bin/fences-slicer', __dirname);
-  var args = [ '--config=' + regionFile, '--inputDir=' + inputDir, '--outputDir=' + outputDir ];
+  var args = [ '--regionFile=' + regionFile, '--inputDir=' + inputDir, '--outputDir=' + outputDir ];
 
   spawn(cmd, args, callback);
 };
