@@ -3,6 +3,7 @@
 var program = require('commander');
 var prep = require('../src/prep');
 var build = require('../src/build');
+var regions = require('../src/regions');
 var slice = require('../src/slice');
 var create = require('../src/create');
 
@@ -31,13 +32,24 @@ program
   });
 
 program
-  .command('slice  <regionsFile> <inputDir> <outputDir>')
+  .command('regions <inputRegionsFile> <sanitizedRegionsFile')
+  .description('Sanitize names and filter input regions file')
+  .action(regions)
+  .on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ fences regions /etc/data/planet-fences/admin_level_2.geojson /etc/data/regions.geojson');
+    console.log();
+  });
+
+program
+  .command('slice <regionsFile> <inputDir> <outputDir>')
   .description('slice all geojson files in inputDir into specified regions')
   .action(slice)
   .on('--help', function() {
     console.log('  Examples:');
     console.log();
-    console.log('    $ fences slice /etc/data/regions.json /etc/data/planet-fences/ /etc/data/region-fences/');
+    console.log('    $ fences slice /etc/data/regions.geojson /etc/data/planet-fences/ /etc/data/region-fences/');
     console.log();
   });
 
