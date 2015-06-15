@@ -32,14 +32,15 @@ $ npm install -g fences
 ```
 fences [options] [command]
 
-Commands:
+  Commands:
 
-    prep [options] <pbfFile> <outputFile>       extract all administrative boundaries into a new pbf file
-    build <pbfFile> <outputDir>                 process an OSM file and generate geojson files for each admin_level of administrative boundaries
-    slice <regionsFile> <inputDir> <outputDir>  slice all geojson files in inputDir into specified regions
+    prep [options] <inputPBF> <outputPBF>                  extract all administrative boundaries into a new pbf file
+    build <inputFile> <outputDir>                          process an OSM file and generate geojson files for each admin_level of administrative boundaries
+    regions <inputRegionsFile> <sanitizedRegionsFil>       Sanitize names and filter input regions file
+    slice <regionsFile> <inputDir> <outputDir>             slice all geojson files in inputDir into specified regions
+    create [options] <inputPBF> <regionsFile> <outputDir>  run fences creation process from start to finish (prep,build,slice)
 
-
-Options:
+  Options:
 
     -h, --help  output usage information
 ```
@@ -85,23 +86,8 @@ build [options] <inputFile> <outputDir>
 #### `slice`
 
 This script will generate region extracts from a given directory of geojson files.
-Regions file should look something like this.
-
-```javascript
-{
-  "regions": [
-    {
-     "name": "USA",
-      "box": {
-        "left": -124.848974,
-        "bottom": 24.396308
-        "right": -66.885444,
-        "top": 49.384358
-      }
-    }
-  ]
-}
-```
+Regions to be extracted are specified in a geojson file where each feature will result in an extract directory.
+It's important that each feature have a property `name` under `properties`. The resulting directories will correspond to those `name` parameters.
 
 ```
 slice [options] <regionsFile> <inputDir> <outputDir>
@@ -114,7 +100,7 @@ slice [options] <regionsFile> <inputDir> <outputDir>
 
   Examples:
 
-    $ fences slice /etc/data/regions.json /etc/data/planet-fences/ /etc/data/region-fences/
+    $ fences slice /etc/data/regions.geojson /etc/data/planet-fences/ /etc/data/region-fences/
 ```
 
 #### `create`

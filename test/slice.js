@@ -20,7 +20,7 @@ module.exports.tests.interface = function(test/*, common*/) {
     var spawnMock = function (command, args, cb, stdio) {
       t.true(endsWith(command, 'node_modules/.bin/fences-slicer'), 'spawn called with correct command');
       t.true(Array.isArray(args), 'spawn called with an args array');
-      t.equal(args[0], '--config=' + regionFile, 'spawn called with --config');
+      t.equal(args[0], '--regionFile=' + regionFile, 'spawn called with --regionFile');
       t.equal(args[1], '--inputDir=' + inputDir, 'spawn called with --inputDir');
       t.equal(args[2], '--outputDir=' + outputDir, 'spawn called with --outputDir');
       t.equal(cb, callback, 'spawn called with proper callback');
