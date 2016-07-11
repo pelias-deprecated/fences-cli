@@ -10,6 +10,5 @@ matrix:
         - node_js: 4.4
         - node_js: 5.8
 before_install:
-  - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe" -y
-  - sudo apt-get update -q
-  - sudo apt-get install osmctools -y
+  - wget --quiet http://security.ubuntu.com/ubuntu/pool/universe/o/osmctools/osmctools_0.3-1_amd64.deb
+  - sudo dpkg -i osmctools_0.3-1_amd64.deb
