@@ -10,7 +10,7 @@ matrix:
         - node_js: 4.4
         - node_js: 5.8
 before_install:
-  - git clone -q git@github.com:ramunasd/osmctools.git
+  - git clone -q https://github.com/ramunasd/osmctools.git
   - cd osmctools
   - autoreconf --install
   - ./configure
