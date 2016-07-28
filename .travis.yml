@@ -1,14 +1,21 @@
 sudo: true
 language: node_js
 node_js:
-  - 0.10
   - 0.12
-  - 4.4
-  - 5.8
+  - 4
+  - 5
+  - 6
 matrix:
-    allow_failures:
-        - node_js: 4.4
-        - node_js: 5.8
+  fast_finish: true
+  allow_failures:
+    - node_js: 6
 before_install:
-  - wget --quiet http://security.ubuntu.com/ubuntu/pool/universe/o/osmctools/osmctools_0.3-1_amd64.deb
+  - >-
+    wget --quiet
+    http://security.ubuntu.com/ubuntu/pool/universe/o/osmctools/osmctools_0.3-1_amd64.deb
   - sudo dpkg -i osmctools_0.3-1_amd64.deb
+cache:
+  directories:
+    - node_modules
+before_script:
+  - npm prune
