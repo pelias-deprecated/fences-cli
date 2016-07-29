@@ -9,9 +9,11 @@ matrix:
     allow_failures:
         - node_js: 4.4
         - node_js: 5.8
+script: "npm test"
 before_install:
   - git clone -q https://github.com/ramunasd/osmctools.git
   - cd osmctools
   - autoreconf --install
   - ./configure
   - sudo make dist-all
+  - cd ..
