@@ -9,11 +9,14 @@ matrix:
   fast_finish: true
   allow_failures:
     - node_js: 6
+script: npm test
 before_install:
-  - >-
-    wget --quiet
-    http://security.ubuntu.com/ubuntu/pool/universe/o/osmctools/osmctools_0.3-1_amd64.deb
-  - sudo dpkg -i osmctools_0.3-1_amd64.deb
+  - git clone -q https://github.com/ramunasd/osmctools.git
+  - cd osmctools
+  - autoreconf --install
+  - ./configure
+  - sudo make dist-all
+  - cd ..
 cache:
   directories:
     - node_modules
