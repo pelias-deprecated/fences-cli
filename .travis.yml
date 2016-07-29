@@ -11,8 +11,8 @@ matrix:
     - node_js: 6
 script: npm test
 before_install:
-  - wget -O - http://m.m.i24.cc/osmfilter.c |cc -x c - -O3 -o /usr/local/bin/osmfilter
-  - wget -O - http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o /usr/local/bin/osmconvert
+  - wget -O - http://m.m.i24.cc/osmfilter.c | sudo cc -x c - -O3 -o /usr/local/bin/osmfilter
+  - wget -O - http://m.m.i24.cc/osmconvert.c | sudo cc -x c - -lz -O3 -o /usr/local/bin/osmconvert
 cache:
   directories:
     - node_modules
