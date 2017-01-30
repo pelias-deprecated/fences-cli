@@ -1,5 +1,7 @@
 # fences
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/pelias/fences-cli.svg)](https://greenkeeper.io/)
+
 [![NPM](https://nodei.co/npm/fences.png)](https://nodei.co/npm/fences/)
 
 Builds administrative boundary datasets
