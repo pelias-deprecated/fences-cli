@@ -16,7 +16,8 @@
   },
   "scripts": {
     "preinstall": "./scripts/preinstall.sh",
-    "test": "node test/run.js | tap-spec"
+    "test": "node test/run.js | tap-spec",
+    "check-dependencies": "node_modules/.bin/npm-check --production"
   },
   "devDependencies": {
     "precommit-hook": "*",
@@ -41,5 +42,8 @@
     "fences-slicer": "latest",
     "fs-extra": "^0.16.5",
     "microtime": "^1.2.0"
-  }
+  },
+  "pre-commit": [
+    "check-dependencies"
+  ]
 }
